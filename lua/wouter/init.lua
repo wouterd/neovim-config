@@ -1,3 +1,3 @@
-require("wouter.remap")
 require("wouter.set")
+require("wouter.remap")
 

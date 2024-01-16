@@ -17,7 +17,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-  ensure_installed = {'tsserver', 'rust_analyzer'},
+  ensure_installed = {'tsserver', 'rust_analyzer', 'templ', 'htmx', 'html'},
   handlers = {
     lsp_zero.default_setup,
     lua_ls = function()
@@ -27,6 +27,16 @@ require('mason-lspconfig').setup({
   }
 })
 
+vim.filetype.add({ extension = { templ = "templ" } })
+
+local in_templ = {'htmx', 'html'}
+for _, lsp in ipairs(in_templ) do
+    require('lspconfig')[lsp].setup({
+        on_attach = on_attach,
+        capabilites = capabilites,
+        filetypes = {'html', 'templ'}
+    })
+end
 local cmp = require('cmp')
 local cmp_select = {behavior = cmp.SelectBehavior.Select}
 

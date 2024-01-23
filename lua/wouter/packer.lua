@@ -50,5 +50,11 @@ return require('packer').startup(function(use)
   use('rafamadriz/friendly-snippets')
 
   use('VonHeikemen/lsp-zero.nvim')
+
+  -- Automatically set up your configuration after cloning packer.nvim
+  -- Put this at the end after all plugins
+  if packer_bootstrap then
+    require('packer').sync()
+  end
 end)
 

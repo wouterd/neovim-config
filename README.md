@@ -7,6 +7,9 @@
 - python3
 - python3 venv
 - golang
+- rust
+- fd
+- wget
 
 ## Initial setup
 - clone / export / simlink this repo to `$HOME/.config/nvim`

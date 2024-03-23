@@ -27,6 +27,21 @@ require('mason-lspconfig').setup({
   }
 })
 
+local configs = require('lspconfig.configs')
+if not configs.openapi then
+  configs.openapi = {
+    default_config = {
+      cmd = {'vacuum', 'language-server'},
+      filetypes = {'yaml', 'yml'},
+      root_dir = function(_)
+        return vim.fs.dirname(vim.fs.find({'vacuum.conf.yaml'}, { upward = true })[1])
+      end,
+    },
+  }
+end
+
+configs.openapi.setup({ })
+
 vim.filetype.add({ extension = { templ = "templ" } })
 
 local in_templ = {'htmx', 'html'}
